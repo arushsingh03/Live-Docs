@@ -1,10 +1,10 @@
-'use server';
+"use server";
 
 import { clerkClient } from "@clerk/nextjs/server";
 import { parseStringify } from "../utils";
 import { liveblocks } from "../liveblocks";
 
-export const getClerkUsers = async ({ userIds }: { userIds: string[]}) => {
+export const getClerkUsers = async ({ userIds }: { userIds: string[] }) => {
   try {
     const { data } = await clerkClient.users.getUserList({
       emailAddress: userIds,
@@ -31,7 +31,7 @@ export const getDocumentUsers = async ({ roomId, currentUser, text }: { roomId: 
 
     const users = Object.keys(room.usersAccesses).filter((email) => email !== currentUser);
 
-    if(text.length) {
+    if (text.length) {
       const lowerCaseText = text.toLowerCase();
 
       const filteredUsers = users.filter((email: string) => email.toLowerCase().includes(lowerCaseText))
